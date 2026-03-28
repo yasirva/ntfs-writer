@@ -56,10 +56,26 @@ Requires: macOS 12+, Swift 5.8+, Command Line Tools (`xcode-select --install`)
 
 ```bash
 bash build_app.sh          # compiles + creates NTFSWriter.app
-bash package_dmg.sh        # also wraps it in a distributable DMG
+bash package_dmg.sh        # builds app AND wraps it in a distributable DMG
 ```
 
-The build script auto-detects your SDK (works with Command Line Tools only — no Xcode required).
+The build scripts auto-detect your SDK — no Xcode install required, Command Line Tools are enough.
+
+### What `build_app.sh` does
+1. Finds the newest available macOS SDK under `/Library/Developer/CommandLineTools/SDKs/`
+2. Compiles all Swift sources + the DiskArbitration C bridge with `swiftc`
+3. Assembles `NTFSWriter.app/Contents/{MacOS,Resources}` with the binary and `Info.plist`
+4. Ad-hoc code-signs the bundle with `codesign --sign -` (no Apple Developer account needed)
+
+### What `package_dmg.sh` does
+1. Runs `build_app.sh` first
+2. Creates a staging folder with `NTFSWriter.app` + an `Applications` symlink
+3. Creates a writable HFS+ disk image with `hdiutil create`
+4. Mounts it and uses AppleScript to set the Finder window layout (icon positions, size)
+5. Unmounts and converts to a compressed read-only UDZO image (`zlib-level=9`)
+6. Output: `NTFSWriter.dmg` (~64 KB)
+
+To distribute: share `NTFSWriter.dmg`. Recipients open it and drag the app to Applications — standard macOS install flow.
 
 ---
 
