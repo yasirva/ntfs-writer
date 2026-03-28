@@ -22,7 +22,7 @@ enum MountError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .ntfs3gNotFound:
-            return "ntfs-3g not found. Run: brew install ntfs-3g"
+            return "ntfs-3g not found. Run: brew tap gromgit/homebrew-fuse && brew install gromgit/homebrew-fuse/ntfs-3g-mac"
         case .scriptWriteFailed:
             return "Could not write temporary mount script."
         case .userCancelled:

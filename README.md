@@ -25,7 +25,8 @@ Plug in your NTFS hard drive, click **Enable Write Access**, done. Your TV, Wind
 **1. Install dependencies (one time):**
 ```bash
 brew install --cask macfuse
-brew install ntfs-3g
+brew tap gromgit/homebrew-fuse
+brew install gromgit/homebrew-fuse/ntfs-3g-mac
 ```
 Then: **System Settings → Privacy & Security → approve macFUSE extension → Restart**
 

@@ -38,7 +38,8 @@ struct DependencyChecker {
         Install required dependencies:
 
         1. brew install --cask macfuse
-        2. brew install ntfs-3g
+        2. brew tap gromgit/homebrew-fuse
+        3. brew install gromgit/homebrew-fuse/ntfs-3g-mac
 
         After installing macFUSE, go to:
         System Settings → Privacy & Security
