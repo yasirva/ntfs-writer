@@ -39,6 +39,7 @@ SOURCES=(
     Sources/NTFSWriter/Core/NTFSMounter.swift
     Sources/NTFSWriter/Core/Preferences.swift
     Sources/NTFSWriter/UI/MenuBarController.swift
+    Sources/NTFSWriter/UI/SetupWindowController.swift
     Sources/NTFSWriter/AppDelegate.swift
     Sources/NTFSWriter/main.swift
 )

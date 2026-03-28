@@ -5,6 +5,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var menuBarController: MenuBarController?
     private var diskMonitor: DiskMonitor?
     private let mounter = NTFSMounter()
+    private var setupWindow: SetupWindowController?
 
     // Single source of truth for drive state
     private var drives: [String: NTFSDrive] = [:]  // keyed by bsdName
@@ -16,6 +17,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let menu = MenuBarController()
         menu.onMountDrive = { [weak self] id in self?.mountDrive(id) }
         menu.onEjectDrive = { [weak self] id in self?.ejectDrive(id) }
+        menu.onShowSetup  = { [weak self] in self?.showSetupWizard() }
         menuBarController = menu
 
         let monitor = DiskMonitor()
@@ -24,9 +26,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         diskMonitor = monitor
         monitor.start()
 
-        // Show dependency warning on first launch if dependencies are missing
+        // Show setup wizard if dependencies are missing
         if !DependencyChecker.allInstalled {
-            showDependencyAlert()
+            showSetupWizard()
         }
 
         menu.updateDrives([])
@@ -121,13 +123,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         alert.runModal()
     }
 
-    private func showDependencyAlert() {
-        let alert = NSAlert()
-        alert.messageText = "NTFSWriter — Setup Required"
-        alert.informativeText = DependencyChecker.installGuide
-        alert.alertStyle = .informational
-        alert.addButton(withTitle: "OK")
+    func showSetupWizard() {
+        if setupWindow == nil {
+            let wc = SetupWindowController()
+            wc.onSetupComplete = { [weak self] in
+                self?.setupWindow = nil
+                self?.diskMonitor?.start()
+            }
+            setupWindow = wc
+        }
         NSApp.activate(ignoringOtherApps: true)
-        alert.runModal()
+        setupWindow?.showWindow(nil)
     }
 }

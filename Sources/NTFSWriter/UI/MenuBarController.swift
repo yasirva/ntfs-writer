@@ -8,6 +8,7 @@ final class MenuBarController {
 
     var onMountDrive: ((String) -> Void)?
     var onEjectDrive: ((String) -> Void)?
+    var onShowSetup: (() -> Void)?
 
     private let statusItem: NSStatusItem
     private var drives: [NTFSDrive] = []
@@ -52,8 +53,8 @@ final class MenuBarController {
 
         if !DependencyChecker.allInstalled {
             let warn = NSMenuItem(
-                title: "⚠️ Missing: \(DependencyChecker.missingList.joined(separator: ", "))",
-                action: #selector(showDependencyInfo),
+                title: "⚠️ Setup required — click to fix",
+                action: #selector(setupTapped),
                 keyEquivalent: ""
             )
             warn.target = self
@@ -145,13 +146,7 @@ final class MenuBarController {
 
     // MARK: - Dependency info
 
-    @objc private func showDependencyInfo() {
-        let alert = NSAlert()
-        alert.messageText = "Missing Dependencies"
-        alert.informativeText = DependencyChecker.installGuide
-        alert.alertStyle = .warning
-        alert.addButton(withTitle: "OK")
-        NSApp.activate(ignoringOtherApps: true)
-        alert.runModal()
+    @objc private func setupTapped() {
+        onShowSetup?()
     }
 }
