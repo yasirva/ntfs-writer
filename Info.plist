@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleExecutable</key>
+    <string>NTFSWriter</string>
+
+    <key>CFBundleIdentifier</key>
+    <string>com.ntfswriter.app</string>
+
+    <key>CFBundleName</key>
+    <string>NTFSWriter</string>
+
+    <key>CFBundleDisplayName</key>
+    <string>NTFS Writer</string>
+
+    <key>CFBundleVersion</key>
+    <string>1</string>
+
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+
+    <key>LSMinimumSystemVersion</key>
+    <string>12.0</string>
+
+    <!-- Hides the app from the Dock and App Switcher — menubar only -->
+    <key>LSUIElement</key>
+    <true/>
+
+    <key>NSHighResolutionCapable</key>
+    <true/>
+
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+
+    <!-- Required on macOS 10.14+ to use NSAppleScript with administrator privileges -->
+    <key>NSAppleEventsUsageDescription</key>
+    <string>NTFS Writer uses administrator privileges to mount NTFS drives with write access.</string>
+</dict>
+</plist>

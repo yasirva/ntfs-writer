@@ -1,0 +1,33 @@
+# Build outputs
+.build/
+*.o
+*.d
+
+# App bundle and DMG (built artifacts — regenerate with build_app.sh / package_dmg.sh)
+NTFSWriter.app/
+NTFSWriter.dmg
+
+# Swift Package Manager
+.swiftpm/
+*.resolved
+
+# Xcode
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+DerivedData/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Secrets
+.env
+.env.*
+
+# Temp mount scripts written at runtime
+/tmp/ntfsw_*.sh
