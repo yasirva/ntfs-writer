@@ -31,3 +31,6 @@ Thumbs.db
 
 # Temp mount scripts written at runtime
 /tmp/ntfsw_*.sh
+
+# Local-only docs
+docs/HOW_IT_WORKS.md
