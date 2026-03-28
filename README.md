@@ -25,7 +25,7 @@ Plug in your NTFS hard drive, click **Enable Write Access**, done. Your TV, Wind
 **1. Install dependencies (one time):**
 ```bash
 brew install --cask macfuse
-brew install ntfs-3g-mac
+brew install ntfs-3g
 ```
 Then: **System Settings → Privacy & Security → approve macFUSE extension → Restart**
 
@@ -155,4 +155,4 @@ ntfs-writer/
 
 - macOS 12 Monterey or later
 - Apple Silicon or Intel Mac
-- [macFUSE](https://osxfuse.github.io) + [ntfs-3g-mac](https://github.com/osxfuse/osxfuse) (via Homebrew)
+- [macFUSE](https://osxfuse.github.io) + [ntfs-3g](https://github.com/osxfuse/osxfuse) (via Homebrew)

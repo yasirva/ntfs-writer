@@ -221,7 +221,7 @@ final class SetupWindowController: NSWindowController {
             "eval \"$(/usr/local/bin/brew shellenv 2>/dev/null || true)\"",
             // Install packages
             "\(brew) install --cask macfuse",
-            "\(brew) install ntfs-3g-mac",
+            "\(brew) install ntfs-3g",
             "echo ''",
             "echo '✓ Done — return to NTFSWriter and click Check Again'"
         ].joined(separator: " && ")
